@@ -6,9 +6,9 @@
       this.querySelector = `._audio_row:not(.${this.foundClassName}):not(.audio_page_player)`;
       this.elements = this.getElements();
 
-      this.onScroll = this.onScroll.bind(this);
-      this.onClick = this.onClick.bind(this);
       this.update = this.update.bind(this);
+      this.onClick = this.onClick.bind(this);
+      this.onScroll = this.onScroll.bind(this);
 
       this.addEventListeners();
       this.setSpy();
@@ -94,7 +94,7 @@
 
     browserDownloadAction(btn) {
       chrome.runtime.sendMessage({
-        action: "downloadFile",
+        action: 'downloadFile',
         url: btn.dataset.src,
         name: `${btn.dataset.singer}-${btn.dataset.title}.mp3`
       });
