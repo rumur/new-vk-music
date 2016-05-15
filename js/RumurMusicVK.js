@@ -4,11 +4,12 @@
     constructor() {
       this.foundClassName = 'js-rumur-found';
       this.querySelector = `._audio_row:not(.${this.foundClassName}):not(.audio_page_player)`;
-      this.elements = this.getElements();
+      this.elements = [];
+      this.intervalID = null;
+      this.updateTreshold = 500;
 
-      this.update = this.update.bind(this);
       this.onClick = this.onClick.bind(this);
-      this.onScroll = this.onScroll.bind(this);
+      this.onVisibility = this.onVisibility.bind(this);
 
       this.addEventListeners();
       this.setSpy();
@@ -46,15 +47,23 @@
     }
 
     getElements() {
-      return Array.from(document.querySelectorAll(this.querySelector));
+      if (!this.elements.length) {
+        this.elements = Array.from(document.querySelectorAll(this.querySelector));
+      }
+
+      return this.elements;
     }
 
     clearElements() {
       return this.elements = [];
     }
 
-    onScroll() {
-      this.update();
+    onVisibility() {
+      if (document.hidden) {
+        clearInterval(this.intervalID);
+      } else {
+        this.update();
+      }
     }
 
     insertDownloadElement(parentNode) {
@@ -66,8 +75,8 @@
       btn.setAttribute('onclick', 'rumurSpy(this)');
 
       btn.dataset.fullId = parentNode.dataset.fullId;
-      btn.dataset.title = atts[3] || 'RumurNoTitle';
-      btn.dataset.singer = atts[4] || 'RumurNoSinger';
+      btn.dataset.title = atts[3] || 'NoTitle';
+      btn.dataset.singer = atts[4] || 'NoSinger';
       btn.dataset.src = '';
       btn.dataset.loaded = 0;
 
@@ -101,20 +110,20 @@
     }
 
     update() {
-      if (!this.elements.length) {
+      this.intervalID = setInterval(() => {
         this.elements = this.getElements();
-      } else {
-        this.elements.map((audio) => {
-          audio.classList.add(this.foundClassName);
-          this.insertDownloadElement(audio);
-        });
-        this.clearElements();
-      }
+        if (this.elements.length) {
+          this.elements.map((audio) => {
+            audio.classList.add(this.foundClassName);
+            this.insertDownloadElement(audio);
+          });
+          this.clearElements();
+        }
+      }, this.updateTreshold);
     }
 
     addEventListeners() {
-      window.addEventListener('scroll', this.onScroll);
-      window.addEventListener('resize', this.onScroll);
+      document.addEventListener('visibilitychange', this.onVisibility);
     }
 
   }
