@@ -9,7 +9,7 @@
         "*://*.vk.com/*"
       ],
       "css": [
-        "stylesheets/style.css"
+        "css/style.css"
       ],
       "js": [
         "js/RumurMusicVK.js"
@@ -23,13 +23,13 @@
     "16": "img/16.png",
     "48": "img/32.png"
   },
-  "name": "Rumur vk audio downloader Pure JS",
+  "name": "Rumur vk audio downloader",
   "permissions": [
     "*://*.vk.com/*",
     "unlimited_storage",
     "downloads"
   ],
-  "version": "0.2.2",
+  "version": "0.2.3",
   "web_accessible_resources": [
     "img/download.png"
   ]

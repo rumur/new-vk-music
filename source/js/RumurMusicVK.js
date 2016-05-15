@@ -102,11 +102,17 @@
     }
 
     browserDownloadAction(btn) {
+      let filename = `${btn.dataset.singer} - ${btn.dataset.title}`;
+      filename = this.sanitizeFilename(filename);
       chrome.runtime.sendMessage({
         action: 'downloadFile',
         url: btn.dataset.src,
-        name: `${btn.dataset.singer}-${btn.dataset.title}.mp3`
+        name: `${filename}.mp3`
       });
+    }
+
+    sanitizeFilename(filename) {
+      return filename.replace(/[`"/:\*\?]|[<|>]/g, "");
     }
 
     update() {
