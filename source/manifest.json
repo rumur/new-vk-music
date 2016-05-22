@@ -26,10 +26,9 @@
   "name": "Rumur vk audio downloader",
   "permissions": [
     "*://*.vk.com/*",
-    "unlimited_storage",
     "downloads"
   ],
-  "version": "0.2.3",
+  "version": "0.2.4",
   "web_accessible_resources": [
     "img/download.png"
   ]

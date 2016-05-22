@@ -1,20 +1,29 @@
-const downloadFile = {
-  startDownload: function (e) {
-    if (!e) return;
-    chrome.downloads.download({
-        url: e.url,
-        filename: e.name
-      },
-      function (t) {
-        console.log('File is downloading...');
-      })
+var stack = [];
+var current = [];
+const rumurDownload = (item) => {
+  if (!item) {
+    return false;
   }
-};
-chrome.runtime.onMessage.addListener(function (e, t, n) {
-  if (e.action == "downloadFile") {
-    downloadFile.startDownload({
-      url: e.url,
-      name: e.name
-    });
+  chrome.downloads.download({
+    url: item.url,
+    filename: item.name,
+    saveAs: true,
+  });
+}
+
+chrome.runtime.onMessage.addListener( (element) => {
+  if (element.action == 'downloadFile') {
+    stack = element.stack;
+    current = stack.shift();
+    if (current) {
+      rumurDownload(current);
+    }
+  }
+});
+
+chrome.downloads.onChanged.addListener( (element) => {
+  current = stack.shift();
+  if (current && element.hasOwnProperty('endTime') === false) {
+    rumurDownload(current);
   }
 });
