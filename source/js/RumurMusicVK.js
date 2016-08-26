@@ -228,7 +228,20 @@
     }
 
     sanitizeFilename(filename) {
-      return filename.replace(/[`"/:\*\?]|[<|>]/g, "");
+      filename = this.htmlEntities(filename);
+      filename = filename.replace(/(<([^>]+)>)|[`~"/:\*\?]|[<|>]/ig, '');
+      return filename;
+    }
+
+    htmlEntities(str) {
+      return String(str).replace(/\&amp;/mg, '&')
+          .replace(/\&quot;/mg, '"')
+          .replace(/\&quote;/mg, '"')
+          .replace(/\&#0?95;/mg, '_')
+          .replace(/\&#0?39;/mg, "'")
+          .replace(/\&#0?34;/mg, '"')
+          .replace(/\&#0?62;/mg, '>')
+          .replace(/\&#0?60;/mg, '<');
     }
 
     updateAudio() {

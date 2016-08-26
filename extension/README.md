@@ -8,4 +8,11 @@
 5. Refresh your VK page
 6. That's all lads
 
+
+# Change Log
+###0.2.5 (26.08.2016)
+1. Minor Chnages;
+2. Added htmlEntities
+3. Added stripTags
+
 ### After that you should see something like this - ![alt text](https://scrstorage.s3.amazonaws.com/nqdeb0516.png "Refresh the vk feed")
