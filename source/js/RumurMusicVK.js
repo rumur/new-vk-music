@@ -35,7 +35,7 @@
           
           if (audioTarget !== null) {
             if (audioTarget[2]) {
-              btn.dataset.src = audioTarget[2];
+              btn.dataset.src = unmaskAudioUrl(audioTarget[2]);
               btn.dataset.loaded = 1;
             } else {
               ajax.post("al_audio.php", {
