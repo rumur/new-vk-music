@@ -10,6 +10,9 @@
 
 
 # Change Log
+###0.2.6 (08.04.2017)
+1. Added unmask Audio Function;
+
 ###0.2.5 (26.08.2016)
 1. Minor Chnages;
 2. Added htmlEntities
