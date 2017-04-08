@@ -66,12 +66,12 @@
               var source = [];
               response.map((i) => {
                 let innerSrc = {
-                  url: i[2],
+                  url: unmaskAudioUrl(i[2]),
                   name: i.slice(3, 5).reverse().join(' - '),
                 };
                 source.push(JSON.stringify(innerSrc));
               });
-              btn.dataset.src = "[" + unmaskAudioUrl(source) + "]";
+              btn.dataset.src = "[" + source + "]";
               btn.dataset.loaded = 1;
             }
           })
