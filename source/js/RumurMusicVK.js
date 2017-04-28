@@ -300,10 +300,15 @@
     updateAudio() {
       this.audioIntervalID = setInterval(() => {
         this.audioElements = this.getAudioElements();
+        
         if (this.audioElements.length) {
           this.audioElements.map((audio) => {
             audio.classList.add(this.foundClassName);
-            this.insertAudioDownloadElement(audio);
+
+            if (audio != null) {
+              this.insertAudioDownloadElement(audio);
+            }
+            
           });
           this.clearAudioElements();
         }
@@ -313,6 +318,7 @@
     updatePlayList() {
       this.playlistIntervalID = setInterval(() => {
         this.playlistElements = this.getPlaylistElements();
+        
         if (this.playlistElements.length) {
           this.playlistElements.map((playList) => {
             playList.classList.add(this.foundClassName);
@@ -320,11 +326,15 @@
             const claimed = playList.querySelectorAll('.claimed');
             const count = children.length - claimed.length;
             let packIds = [];
+            
             if (count > 2) {
               children.map((child) => packIds.push(child.dataset.fullId));
               const playListWrap = 
               playList.closest('.post_info').querySelector('.post_full_like');
-              this.insertPlaylistDownloadElement(playListWrap, count, packIds);
+              
+              if (playListWrap != null) {
+               this.insertPlaylistDownloadElement(playListWrap, count, packIds); 
+              }
             }
           });
           this.clearPlaylistElements();
