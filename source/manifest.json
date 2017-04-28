@@ -28,7 +28,7 @@
     "*://*.vk.com/*",
     "downloads"
   ],
-  "version": "0.2.7",
+  "version": "0.2.8",
   "web_accessible_resources": [
     "img/download.png"
   ]
