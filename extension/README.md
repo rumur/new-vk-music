@@ -17,4 +17,4 @@
 2. Added htmlEntities
 3. Added stripTags
 
-### After that you should see something like this - ![alt text](https://scrstorage.s3.amazonaws.com/nqdeb0516.png "Refresh the vk feed")
+### After that you should see something like this - ![alt text](https://scrstorage.s3.amazonaws.com/04-17-8vpqs.png "Refresh the vk feed")
