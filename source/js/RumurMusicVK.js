@@ -179,8 +179,9 @@
 
     insertAudioDownloadElement(parentNode) {
       const atts = JSON.parse(parentNode.dataset.audio);
-      let btn = document.createElement('span');
-
+      let btn = document.createElement('div');
+      const innerCoverNode = parentNode.querySelector('.audio_row_inner');
+      
       btn.classList.add(this.downloadBtnClassName);
 
       btn.setAttribute('onclick', 'rumurSingleSpy(this)');
@@ -192,7 +193,7 @@
       btn.dataset.loaded = 0;
 
       btn.addEventListener('click', (evt) => this.onAudioClick(evt, btn));
-      parentNode.insertBefore(btn, parentNode.children[1]);
+      innerCoverNode.insertBefore(btn, innerCoverNode.querySelector('.audio_info'));
     }
 
     insertPlaylistDownloadElement(parentNode, count = 0, packIds = []) {

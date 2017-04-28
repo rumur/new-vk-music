@@ -2,6 +2,9 @@
 **There is a google chrome extension that might to help you to download your favourite music from vk.com.**
 
 # Change Log
+### 0.2.7 (28.04.2017)
+1. Changed the appearance according to the new design of music section.
+
 ### 0.2.6 (08.04.2017)
 1. Added unmask Audio Url Function;
 
